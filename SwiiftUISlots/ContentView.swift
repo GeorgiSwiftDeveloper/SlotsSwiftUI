@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State  private var creadits = 1000
+    
     var body: some View {
         ZStack{
             Rectangle()
@@ -20,7 +23,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                
+                Spacer()
                 HStack{
                     Image(systemName: "star.fill")
                     Text("SwiftUI Slots")
@@ -28,13 +31,13 @@ struct ContentView: View {
                         .foregroundColor(Color.white)
                     Image(systemName: "star.fill")
                 }.scaleEffect(2)
-                
-                Text("Credits: 1000")
+                Spacer()
+                Text("Credits: \(creadits)")
                     .foregroundColor(Color.black)
                     .padding(.all)
                     .background(Color.black.opacity(0.5))
                     .cornerRadius(20)
-                
+                Spacer()
                 HStack {
                     Spacer()
                     Image("apple")
@@ -54,6 +57,21 @@ struct ContentView: View {
                         .background(Color.white.opacity(0.5)).cornerRadius(20)
                     Spacer()
                 }
+                Spacer()
+                
+                Button(action: {
+                    self.creadits += 1
+                }) {
+                    Text("Spin")
+                        .bold()
+                        .foregroundColor(.white)
+                        .padding(.all, 10)
+                        .padding([.leading,.trailing], 30)
+                        .cornerRadius(20)
+                        .background(Color.pink)
+                    
+                }
+                Spacer()
                 
             }
         }
