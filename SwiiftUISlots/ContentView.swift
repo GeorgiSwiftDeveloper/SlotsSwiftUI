@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State  private var creadits = 1000
-    private var symbols = ["apple","star","cherry"]
+    private var symbols = ["apple","banana","cherry"]
     @State private var numbers = [0,0,0]
     var body: some View {
         ZStack{
