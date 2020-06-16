@@ -11,7 +11,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State  private var creadits = 1000
-    
+    private var symbols = ["apple","star","cherry"]
+    @State private var numbers = [0,0,0]
     var body: some View {
         ZStack{
             Rectangle()
@@ -40,18 +41,18 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Image("apple")
+                    Image(symbols[numbers[0]])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .background(Color.white.opacity(0.5)).cornerRadius(20)
                     
-                    Image("apple")
+                    Image(symbols[numbers[1]])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .background(Color.white.opacity(0.5)).cornerRadius(20)
                     
                     
-                    Image("apple")
+                    Image(symbols[numbers[2]])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .background(Color.white.opacity(0.5)).cornerRadius(20)
@@ -60,7 +61,11 @@ struct ContentView: View {
                 Spacer()
                 
                 Button(action: {
-                    self.creadits += 1
+                    self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
+                    
+                    self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
+                    
+                    self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
                 }) {
                     Text("Spin")
                         .bold()
