@@ -18,7 +18,46 @@ struct ContentView: View {
                 .foregroundColor(Color(red: 228/255, green: 195/255, blue: 76/255))
                 .rotationEffect(Angle(degrees: 45))
                 .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                
+                HStack{
+                    Image(systemName: "star.fill")
+                    Text("SwiftUI Slots")
+                        .bold()
+                        .foregroundColor(Color.white)
+                    Image(systemName: "star.fill")
+                }.scaleEffect(2)
+                
+                Text("Credits: 1000")
+                    .foregroundColor(Color.black)
+                    .padding(.all)
+                    .background(Color.black.opacity(0.5))
+                    .cornerRadius(20)
+                
+                HStack {
+                    Spacer()
+                    Image("apple")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .background(Color.white.opacity(0.5)).cornerRadius(20)
+                    
+                    Image("apple")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .background(Color.white.opacity(0.5)).cornerRadius(20)
+                    
+                    
+                    Image("apple")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .background(Color.white.opacity(0.5)).cornerRadius(20)
+                    Spacer()
+                }
+                
+            }
         }
+        
     }
 }
 
