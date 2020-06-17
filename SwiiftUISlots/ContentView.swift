@@ -10,12 +10,15 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State  private var creadits = 1000
-    @State  private var symbols = ["apple","banana","cherry"]
-    @State private var numbers = [0,0,0]
-    @State private var backgrounds = [Color.white,Color.white,Color.white]
+    @State private var creadits = 1000
+    @State private var symbols = ["apple","banana","cherry"]
+    @State private var numbers = [0,0,0,0,0,0,0,0,0]
+    @State private var backgrounds = [Color.white,Color.white,Color.white,Color.white,Color.white,Color.white,Color.white,Color.white,Color.white]
     @State private var betAmount = 5
+    
     var body: some View {
+        
+        
         ZStack{
             Rectangle()
                 .foregroundColor(Color(red: 200/255, green: 143/255, blue: 32/255))
@@ -41,48 +44,63 @@ struct ContentView: View {
                     .background(Color.black.opacity(0.5))
                     .cornerRadius(20)
                 Spacer()
-                HStack {
-                    Spacer()
-                    
-                    CardView(symbol: $symbols[numbers[0]], background: $backgrounds[0])
-                    CardView(symbol: $symbols[numbers[1]], background: $backgrounds[1])
-                    CardView(symbol: $symbols[numbers[2]], background: $backgrounds[2])
-                    
-                    
-                    Spacer()
+                VStack {
+                    HStack {
+                        CardView(symbol: $symbols[numbers[0]], background: $backgrounds[0])
+                        CardView(symbol: $symbols[numbers[1]], background: $backgrounds[1])
+                        CardView(symbol: $symbols[numbers[2]], background: $backgrounds[2])
+                    }.padding(.horizontal)
+                    HStack {
+                        CardView(symbol: $symbols[numbers[3]], background: $backgrounds[3])
+                        CardView(symbol: $symbols[numbers[4]], background: $backgrounds[4])
+                        CardView(symbol: $symbols[numbers[5]], background: $backgrounds[5])
+                    }.padding(.horizontal)
+                    HStack {
+                        CardView(symbol: $symbols[numbers[6]], background: $backgrounds[6])
+                        CardView(symbol: $symbols[numbers[7]], background: $backgrounds[7])
+                        CardView(symbol: $symbols[numbers[8]], background: $backgrounds[8])
+                    }.padding(.horizontal)
                 }
+                
                 Spacer()
                 
                 Button(action: {
-                    //Set backgrounds back to white
-//                    self.backgrounds[0] = Color.white
-//                    self.backgrounds[1] = Color.white
-//                    self.backgrounds[2] = Color.white
-//
                     self.backgrounds = self.backgrounds.map({ (_ ) -> Color in
                         Color.white
                     })
                     
-                    self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
+                    self.numbers = self.numbers.map({ (_ ) -> Int in
+                        Int.random(in: 0...self.symbols.count - 1)
+                    })
                     
-                    self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
-                    
-                    self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
                     
                     if self.numbers[0] == self.numbers[1] && self.numbers[1] == self.numbers[2]{
                         
                         //Won
                         self.creadits += self.betAmount * 10
                         
+                        self.backgrounds[0] = Color.green
+                        self.backgrounds[1] = Color.green
+                        self.backgrounds[2] = Color.green
                         
-                        //Update background to green
-//                        self.backgrounds[0] = Color.green
-//                        self.backgrounds[1] = Color.green
-//                        self.backgrounds[2] = Color.green
+                    }else if  self.numbers[3] == self.numbers[4] && self.numbers[4] == self.numbers[5]{
+                        self.creadits += self.betAmount * 10
+                       
+                        self.backgrounds[3] = Color.green
+                        self.backgrounds[4] = Color.green
+                        self.backgrounds[5] = Color.green
                         
-                        self.backgrounds = self.backgrounds.map({ (_ ) -> Color in
-                                           Color.green
-                                       })
+                    }else if self.numbers[6] == self.numbers[7] && self.numbers[7] == self.numbers[8] {
+                        self.creadits += self.betAmount * 10
+                       
+                        self.backgrounds[6] = Color.green
+                        self.backgrounds[7] = Color.green
+                        self.backgrounds[8] = Color.green
+                    }else if self.numbers[2] == self.numbers[4] && self.numbers[4] == self.numbers[6] {
+                        self.creadits += self.betAmount * 20
+                        self.backgrounds[2] = Color.green
+                        self.backgrounds[4] = Color.green
+                        self.backgrounds[6] = Color.green
                     }else{
                         self.creadits -= self.betAmount
                     }
