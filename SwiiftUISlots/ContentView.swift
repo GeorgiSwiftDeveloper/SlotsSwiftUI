@@ -13,6 +13,8 @@ struct ContentView: View {
     @State  private var creadits = 1000
     @State  private var symbols = ["apple","banana","cherry"]
     @State private var numbers = [0,0,0]
+    @State private var backgrounds = [Color.white,Color.white,Color.white]
+    @State private var betAmount = 5
     var body: some View {
         ZStack{
             Rectangle()
@@ -42,9 +44,9 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     
-                    CardView(symbol: $symbols[numbers[0]])
-                    CardView(symbol: $symbols[numbers[1]])
-                    CardView(symbol: $symbols[numbers[2]])
+                    CardView(symbol: $symbols[numbers[0]], background: $backgrounds[0])
+                    CardView(symbol: $symbols[numbers[1]], background: $backgrounds[1])
+                    CardView(symbol: $symbols[numbers[2]], background: $backgrounds[2])
                     
                     
                     Spacer()
@@ -52,11 +54,30 @@ struct ContentView: View {
                 Spacer()
                 
                 Button(action: {
+                    //Set backgrounds back to white
+                    self.backgrounds[0] = Color.white
+                    self.backgrounds[1] = Color.white
+                    self.backgrounds[2] = Color.white
+                    
                     self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
                     
                     self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
                     
                     self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
+                    
+                    if self.numbers[0] == self.numbers[1] && self.numbers[1] == self.numbers[2]{
+                        
+                        //Won
+                        self.creadits += self.betAmount * 10
+                        
+                        
+                        //Update background to green
+                        self.backgrounds[0] = Color.green
+                        self.backgrounds[1] = Color.green
+                        self.backgrounds[2] = Color.green
+                    }else{
+                        self.creadits -= self.betAmount
+                    }
                 }) {
                     Text("Spin")
                         .bold()
