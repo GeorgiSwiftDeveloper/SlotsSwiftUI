@@ -29,7 +29,7 @@ struct ContentView: View {
                 Spacer()
                 HStack{
                     Image(systemName: "star.fill")
-                    Text("SwiftUI Slots")
+                    Text("Slots")
                         .bold()
                         .foregroundColor(Color.white)
                     Image(systemName: "star.fill")
@@ -55,9 +55,13 @@ struct ContentView: View {
                 
                 Button(action: {
                     //Set backgrounds back to white
-                    self.backgrounds[0] = Color.white
-                    self.backgrounds[1] = Color.white
-                    self.backgrounds[2] = Color.white
+//                    self.backgrounds[0] = Color.white
+//                    self.backgrounds[1] = Color.white
+//                    self.backgrounds[2] = Color.white
+//
+                    self.backgrounds = self.backgrounds.map({ (_ ) -> Color in
+                        Color.white
+                    })
                     
                     self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
                     
@@ -72,9 +76,13 @@ struct ContentView: View {
                         
                         
                         //Update background to green
-                        self.backgrounds[0] = Color.green
-                        self.backgrounds[1] = Color.green
-                        self.backgrounds[2] = Color.green
+//                        self.backgrounds[0] = Color.green
+//                        self.backgrounds[1] = Color.green
+//                        self.backgrounds[2] = Color.green
+                        
+                        self.backgrounds = self.backgrounds.map({ (_ ) -> Color in
+                                           Color.green
+                                       })
                     }else{
                         self.creadits -= self.betAmount
                     }
